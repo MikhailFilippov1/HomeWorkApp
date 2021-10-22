@@ -7,6 +7,7 @@ public class HomeWorkApp {
         checkSumSign();
         printColor();
         Numbers();
+        // New commit
     }
         public static void printThreeWords(){
             System.out.println("Orange" + '\n' + "Banana" + '\n' + "Apple");
