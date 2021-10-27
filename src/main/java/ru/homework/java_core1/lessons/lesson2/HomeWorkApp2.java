@@ -16,11 +16,13 @@ public class HomeWorkApp2 {
         int year;
         System.out.println("\nПРОГРАММА ОПРЕДЕЛЕНИЯ ВИСОКОСНОГО ГОДА");
 
-            System.out.println("Введите год:");
-            year = scanner.nextInt();
-            if(defineLeapYear(year) == true)System.out.println("Год високосный\n");
-                else System.out.println("Год невисокосный\n");
 
+            do {
+                System.out.println("Введите год:");
+                year = scanner.nextInt();
+                if (defineLeapYear(year) == true) System.out.println("Год високосный\n");
+                else System.out.println("Год невисокосный\n");
+            }while(exitCondition());
     }
 
     public static boolean excersize1(int a, int b){
@@ -54,5 +56,19 @@ public class HomeWorkApp2 {
                     else return false;
         }
         else return false;
+    }
+
+    public static boolean exitCondition(){
+        Scanner scanner = new Scanner(System.in);
+        String s;
+        char a;
+        for(;;){
+            System.out.print("Продолжить? [y/n]:");
+            s = scanner.nextLine();
+            a = s.charAt(0);
+            if(a == 'y')return true;
+                else if(a == 'n')return false;
+            System.out.print('\r');
+        }
     }
 }
