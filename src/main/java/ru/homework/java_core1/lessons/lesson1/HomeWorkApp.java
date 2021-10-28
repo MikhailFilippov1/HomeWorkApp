@@ -6,7 +6,8 @@ public class HomeWorkApp {
         printThreeWords();
         checkSumSign();
         printColor();
-        Numbers();
+        compareNumbers();
+        // New commit
     }
         public static void printThreeWords(){
             System.out.println("Orange" + '\n' + "Banana" + '\n' + "Apple");
@@ -30,7 +31,7 @@ public class HomeWorkApp {
                         else System.out.println("Зеленый");
         }
 
-        public static void Numbers(){
+        public static void compareNumbers(){
             int a = 10;
             int b = 11;
                 if(a >= b)System.out.println("a >= b");
