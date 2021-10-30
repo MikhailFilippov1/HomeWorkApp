@@ -49,8 +49,24 @@ public class HomeWorkApp3 {
 
         int arr7[] = {2, 2, -2, 1, 2, 2, 10, 3, 7, -5, 12};
         // int arr7[] = {2, 2};
-        System.out.println(checkBalance(arr7));
+        System.out.println(checkBalance(arr7));    // Вызов метода проверки баланса массива
+
+        int arr8[] = {1, 2, 3, 4, 5};
+        int m = 3;                  // Параметр на сколько сдвигать. Если -, то влево
+        for (int i = 0; i < arr8.length; i++) {
+            System.out.print(arr8[i] + " ");    //Печать исходного массива
+
+        }System.out.println();
+
+        arr8 = shiftArray(arr8, m);         // Вызов метода сдвига массива на m
+
+        for (int i = 0; i < arr8.length; i++) {
+            System.out.print(arr8[i] + " ");        //Печать массива со сдвинутыми ячейками
+        }
     }
+
+
+
 
     public static int[] someArray(int arrayLength, int arrayValue){ //метод заполнения массива длиной Length значением Value
         int arr4[] = new int[arrayLength];
@@ -64,6 +80,7 @@ public class HomeWorkApp3 {
         int indexRight = array.length - 1;
         int indexLeft = 0;
 
+        if(array.length == 1)return false;
         for (int i = 0; i < array.length; i++) {
             if(sumLeft == sumRight && (indexRight - indexLeft) <= 1 )return true;
                 else if(sumLeft != sumRight && (indexRight - indexLeft) <= 1)return false; // выход с false для  массивов arr[2]
@@ -77,6 +94,28 @@ public class HomeWorkApp3 {
             }
         }
         return false;
+    }
+
+    public static int[] shiftArray(int array[], int shift){ // Метод, сдвигающий на shift
+        int popCell;
+        if (shift > 0) {
+            for (int j = 0; j < shift; j++) {
+                popCell = array[array.length - 1];
+                for (int i = array.length - 1; i > 0; i--) {
+                    array[i] = array[i - 1];
+                }
+                array[0] = popCell;
+            }
+        }else {
+            for (int j = 0; j < Math.abs(shift); j++) {
+                popCell = array[0];
+                for (int i = 0; i < array.length - 1; i++) {
+                    array[i] = array[i + 1];
+                }
+                array[array.length - 1] = popCell;
+            }
+        }
+        return array;
     }
 
 }
