@@ -1,7 +1,5 @@
 package ru.homework.java_core1.lessons.lesson4;
 
-import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -12,7 +10,6 @@ public class TicTacToeGame {
     private static char dotHuman;
     private static char dotAi;
     private static final Scanner scanner = new Scanner(System.in);
-    private static  final Random random = new Random();
     private static char[][] field;
     private static int fieldSizeX;
     private static int fieldSizeY;
@@ -81,7 +78,6 @@ public class TicTacToeGame {
     }
 
     private static boolean checkGame(char dot) {
-        boolean f;
         if (checkWin(dot)){
             if (dot == dotHuman) {
                 System.out.println("Победа человеческого разума!");
@@ -92,9 +88,8 @@ public class TicTacToeGame {
             }
         return true;
     }
-        f = checkDraw();
-        if(f == true)return true;
-            else return false;
+        if(checkDraw()) return true;
+        return false;
     }
 
     private static void humanTurn(){
@@ -204,17 +199,10 @@ public class TicTacToeGame {
                 }
             }
         }
-
-        /* do {
-            x = random.nextInt(fieldSizeX);
-            y = random.nextInt(fieldSizeY);
-        }while (!isCellEmpty(y, x)); */
-
-        // field[y][x] = dotAi;
     }
 
     private static boolean checkWin(char dot){
-        winLength = 0;
+       winLength = 0;
         for (int i = 0; i < fieldSizeY; i++) {      // Проверка горизонталей
             for (int j = 0; j < fieldSizeX; j++) {
                 if(field[i][j] == dot)winLength++;
@@ -225,10 +213,24 @@ public class TicTacToeGame {
         winLength = 0;
         for (int i = 0; i < fieldSizeX; i++) {      // Проверка вертикалей
             for (int j = 0; j < fieldSizeY; j++) {
-                if(field[i][j] == dot)winLength++;
+                if(field[j][i] == dot)winLength++;
                 if(winLength == fieldSizeY)return true;
             }
             winLength = 0;
+        }
+        winLength = 0;
+        for (int i = 0; i < fieldSizeY; i++) {     // Проверка диагоналей
+            for (int j = 0; j < fieldSizeX; j++) {
+                if(i == j && field[i][j] == dot)winLength++;
+            }
+            if(winLength == fieldSizeX)return true;
+        }
+        winLength = 0;
+        for (int i = 0; i < fieldSizeY; i++) {     // Проверка диагоналей
+            for (int j = 0; j < fieldSizeX; j++) {
+                if(i + j + 1 == fieldSizeX && field[i][j] == dot)winLength++;
+            }
+            if(winLength == fieldSizeX)return true;
         }
 
         /*if(field[0][0] == dot && field[0][1] == dot && field[0][2] == dot) return true;
@@ -237,10 +239,10 @@ public class TicTacToeGame {
 
         if(field[0][0] == dot && field[1][0] == dot && field[2][0] == dot) return true;
         if(field[0][1] == dot && field[1][1] == dot && field[2][1] == dot) return true;
-        if(field[0][2] == dot && field[1][2] == dot && field[2][2] == dot) return true;*/
+        if(field[0][2] == dot && field[1][2] == dot && field[2][2] == dot) return true;
 
         if(field[0][0] == dot && field[1][1] == dot && field[2][2] == dot) return true;
-        if(field[0][2] == dot && field[1][1] == dot && field[2][0] == dot) return true;
+        if(field[0][2] == dot && field[1][1] == dot && field[2][0] == dot) return true;*/
         return false;
         }
 
@@ -306,7 +308,6 @@ public class TicTacToeGame {
             System.out.print('\r');
         }
     }
-
-    }
+}
 
 
