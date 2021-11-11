@@ -37,6 +37,7 @@ public class TicTacToeGame {
 
     private static void playRound(){
         System.out.printf("РАУНД %d НАЧИНАЕТСЯ!\n", ++roundCounter);
+        winLength = 3;
         initField(3, 3);
         printField();
         if(dotHuman == DOT_X)humanFirstTurn();
@@ -108,7 +109,7 @@ public class TicTacToeGame {
     private static void aiTurn(){
         int x;
         int y;
-        winLength = 0;
+        int par = 0;
 
         if(isCellEmpty(fieldSizeX%2, fieldSizeY%2)){      // Проверка центра
             field[fieldSizeX%2][fieldSizeY%2] = dotAi;
@@ -116,9 +117,9 @@ public class TicTacToeGame {
         }
         for (int i = 0; i < fieldSizeY; i++) { // проверка горизонталей на 2 своих фишки
             for (int j = 0; j < fieldSizeX; j++) {
-                if(field[i][j] == dotAi)winLength++;
+                if(field[i][j] == dotAi)par++;
 
-                if(winLength == 2) {
+                if(par == winLength - 1) {
                     for (int k = 0; k < fieldSizeX; k++) {
                         if(isCellEmpty(i, k)) {
                             field[i][k] = dotAi;
@@ -127,13 +128,13 @@ public class TicTacToeGame {
                     }
                 }
             }
-            winLength = 0;
+            par = 0;
         }
-        winLength = 0;
+        par = 0;
         for (int i = 0; i < fieldSizeX; i++) {  // проверка вертикалей на 2 своих фишки
             for (int j = 0; j < fieldSizeY; j++) {
-                if(field[j][i] == dotAi)winLength++;
-                    if(winLength == 2) {
+                if(field[j][i] == dotAi)par++;
+                    if(par == winLength - 1) {
                         for (int k = 0; k < fieldSizeY; k++) {
                             if(isCellEmpty(k, i)) {
                                 field[k][i] = dotAi;
@@ -142,14 +143,14 @@ public class TicTacToeGame {
                         }
                     }
             }
-            winLength = 0;
+            par = 0;
         }
-        winLength = 0;
+        par = 0;
         for (int i = 0; i < fieldSizeY; i++) { // Проверка горизонталей на 2 фишки человека
             for (int j = 0; j < fieldSizeX; j++) {
-                if(field[i][j] == dotHuman) winLength++;
+                if(field[i][j] == dotHuman) par++;
             }
-            if(winLength == 2){                 // В i-ой линии две фишки человека
+            if(par == winLength - 1){                 // В i-ой линии две фишки человека
                 for (int j = 0; j < fieldSizeX; j++) {
                     if(field[i][j] == DOT_EMPTY) {
                         field[i][j] = dotAi;        // ставим третью фишку компьютера
@@ -157,14 +158,14 @@ public class TicTacToeGame {
                     }
                 }
             }
-            winLength = 0;
+            par = 0;
         }
-        winLength = 0;
+        par = 0;
         for (int i = 0; i < fieldSizeX; i++) { // Проверка вертикалей на 2 фишки человека
             for (int j = 0; j < fieldSizeY; j++) {
-                if(field[j][i] == dotHuman) winLength++;
+                if(field[j][i] == dotHuman) par++;
             }
-            if(winLength == 2){                 // В i-ой линии две фишки человека
+            if(par == winLength - 1){                 // В i-ой линии две фишки человека
                 for (int j = 0; j < fieldSizeY; j++) {
                     if(field[j][i] == DOT_EMPTY){
                         field[j][i] = dotAi;        // ставим третью фишку компьютера
@@ -172,7 +173,7 @@ public class TicTacToeGame {
                     }
                 }
             }
-            winLength = 0;
+            par = 0;
         }
         if(isCellEmpty(0, 0)){          // Проверка углов и заполнение одного из них
             field[0][0] = dotAi;
@@ -202,35 +203,35 @@ public class TicTacToeGame {
     }
 
     private static boolean checkWin(char dot){
-       winLength = 0;
+       int par = 0;
         for (int i = 0; i < fieldSizeY; i++) {      // Проверка горизонталей
             for (int j = 0; j < fieldSizeX; j++) {
-                if(field[i][j] == dot)winLength++;
-                if(winLength == fieldSizeX)return true;
+                if(field[i][j] == dot)par++;
+                if(par == winLength)return true;
             }
-            winLength = 0;
+            par = 0;
         }
-        winLength = 0;
+        par = 0;
         for (int i = 0; i < fieldSizeX; i++) {      // Проверка вертикалей
             for (int j = 0; j < fieldSizeY; j++) {
-                if(field[j][i] == dot)winLength++;
-                if(winLength == fieldSizeY)return true;
+                if(field[j][i] == dot)par++;
+                if(par == winLength)return true;
             }
-            winLength = 0;
+            par = 0;
         }
-        winLength = 0;
+        par = 0;
         for (int i = 0; i < fieldSizeY; i++) {     // Проверка диагоналей
             for (int j = 0; j < fieldSizeX; j++) {
-                if(i == j && field[i][j] == dot)winLength++;
+                if(i == j && field[i][j] == dot)par++;
             }
-            if(winLength == fieldSizeX)return true;
+            if(par == winLength)return true;
         }
-        winLength = 0;
+        par = 0;
         for (int i = 0; i < fieldSizeY; i++) {     // Проверка диагоналей
             for (int j = 0; j < fieldSizeX; j++) {
-                if(i + j + 1 == fieldSizeX && field[i][j] == dot)winLength++;
+                if(i + j + 1 == fieldSizeX && field[i][j] == dot)par++;
             }
-            if(winLength == fieldSizeX)return true;
+            if(par == winLength)return true;
         }
 
         /*if(field[0][0] == dot && field[0][1] == dot && field[0][2] == dot) return true;
