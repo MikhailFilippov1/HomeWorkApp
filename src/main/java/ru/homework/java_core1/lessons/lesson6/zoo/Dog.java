@@ -20,7 +20,7 @@ public class Dog extends Animal{
         if (distance < maxDistanceForSwim) {
             System.out.printf("%s swim succesfully %d meters!\n", name, distance);
         } else {
-            System.out.printf("%s can't swim %d meters and drowned. R.I.P.\n", name, distance);
+            System.out.printf("%s can't swim %d meters and drowned.\n", name, distance);
         }
     }
 }

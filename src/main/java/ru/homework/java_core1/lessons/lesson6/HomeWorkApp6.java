@@ -32,7 +32,7 @@ public class HomeWorkApp6 {
         Animal[] cats = {           // В зоопарке всего 4 вольера для кошек
                 new Cat("Barsik"),
                 new Cat("Vaska"),
-                new Cat("Rizik"),
+                new Cat("Murzik"),
                 new Cat("Murka"),
         };
         for (int i = 0; i < numberOfDogs; i++) {

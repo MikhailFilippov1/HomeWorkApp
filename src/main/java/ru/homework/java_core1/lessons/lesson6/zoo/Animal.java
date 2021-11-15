@@ -3,10 +3,6 @@ package ru.homework.java_core1.lessons.lesson6.zoo;
 public abstract class Animal{
     final String name;
 
-   /*public Animal(){
-        System.out.println("Animal born!");
-    }*/
-
     public Animal(String name){
         this.name = name;
     }
