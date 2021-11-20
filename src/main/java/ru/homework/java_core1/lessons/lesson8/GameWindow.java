@@ -5,12 +5,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.lang.reflect.GenericDeclaration;
 import java.lang.reflect.TypeVariable;
 import java.util.EventObject;
 
 public class GameWindow extends JFrame {
     private GameApp gameApp;
+    static String buttonChar = "X";
 
     public GameWindow(int x, int y){
         setSize(300, 300);
@@ -20,15 +23,24 @@ public class GameWindow extends JFrame {
         setResizable(false);
         setLayout(null);
         setLayout(new GridLayout(x, y));
-        ActionListener listener = e -> {
-            JButton lastButton = (JButton) e.getSource();
-        };
+
         for (int i = 0; i < x * y; i++) {
-            JButton button = new JButton();
-            button.addActionListener(listener);
+            JButton button = new JButton(/*(String.valueOf(i + 1))*/);
             add(button);
-            // add(new JButton((String.valueOf(i + 1))));
+            //add(new JButton((String.valueOf(i + 1))));
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                   if( ((JButton)actionEvent.getSource()).getText().equals("")) {
+                        button.setFont(new Font("Arial", Font.BOLD, 60));
+                        button.setText(buttonChar);
+                        if(buttonChar == "O") buttonChar = "X";
+                            else buttonChar = "O";
+                    }
+                }
+            });
         }
+
         gameApp = new GameApp();
         //SettingsWindow settings = new SettingsWindow(this);
         setVisible(true);

@@ -28,14 +28,7 @@ public class GameApp extends JPanel {
 
     public GameApp() {
         isInitialized = false;
-       int[][] field = new int[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                field[i][j]=0;
-                //System.out.printf("| %d ",field[i][j]);
-            }
-            //System.out.println();
-        }
+        int[][] field = new int[3][3];
 
         /*addMouseListener(new MouseAdapter() {
             @Override
@@ -49,22 +42,23 @@ public class GameApp extends JPanel {
 
 
     private void update(MouseEvent e) {
-        JButton lastButton = null;
+        int cellX = e.getX() / cellWidth;
+        int cellY = e.getY() / cellHeight;
 
-        lastButton = (JButton) e.getSource();
+        if (!isCellValid(cellY, cellX) || !isCellEmpty(cellY, cellX)) {
+            return;
+        }
+        field[cellY][cellX] = DOT_HUMAN;
+        repaint();
+        return;
 
-            lastButton.setFont(new Font("Arial", Font.BOLD, 60));
-            lastButton.setText("X");
-        System.out.println("dfbdfbfdbdb");
-
-        if (isGameOver || !isInitialized) {
+        /*if (isGameOver || !isInitialized) {
             return;
         }
         if (!playerTurn(e)) {
-            System.out.println("dKHJKHUYUYYb");
             return;
         }
-        /*if (gameCheck(DOT_HUMAN, STATE_WIN_HUMAN)) {
+        if (gameCheck(DOT_HUMAN, STATE_WIN_HUMAN)) {
             return;
         }
         aiTurn();
@@ -81,9 +75,9 @@ public class GameApp extends JPanel {
 
 
 
-      //if (!isCellValid(cellY, cellX) || !isCellEmpty(cellY, cellX)) {
-          //  return false;
-       // }
+      if (!isCellValid(cellY, cellX) || !isCellEmpty(cellY, cellX)) {
+            return false;
+        }
 
         field[cellY][cellX] = DOT_HUMAN;
         for (int i = 0; i < 3; i++) {
