@@ -25,20 +25,17 @@ public class GameWindow extends JFrame {
         setLayout(new GridLayout(x, y));
 
         for (int i = 0; i < x * y; i++) {
-            JButton button = new JButton(/*(String.valueOf(i + 1))*/);
+            JButton button = new JButton();
             add(button);
             //add(new JButton((String.valueOf(i + 1))));
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                   if( ((JButton)actionEvent.getSource()).getText().equals("")) {
-                        button.setFont(new Font("Arial", Font.BOLD, 60));
-                        button.setText(buttonChar);
-                        if(buttonChar == "O") buttonChar = "X";
-                            else buttonChar = "O";
-                    }
+           /* button.addActionListener(actionEvent -> {
+               if( ((JButton)actionEvent.getSource()).getText().equals("")) {
+                    button.setFont(new Font("Arial", Font.BOLD, 60));
+                    button.setText(buttonChar);
+                    if(buttonChar == "O") buttonChar = "X";
+                        else buttonChar = "O";
                 }
-            });
+            });*/
         }
 
         gameApp = new GameApp();

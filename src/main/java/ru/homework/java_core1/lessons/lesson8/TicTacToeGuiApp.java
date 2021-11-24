@@ -9,6 +9,5 @@ public class TicTacToeGuiApp {
 
     public static void main(String[] args) {
         new GameWindow(3, 3);
-
     }
 }

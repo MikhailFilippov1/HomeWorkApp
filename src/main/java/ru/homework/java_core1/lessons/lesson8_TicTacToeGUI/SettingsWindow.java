@@ -7,13 +7,13 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class SettingsWindow extends JFrame {
-    private static final int WINDOW_WIDTH = 350;
+    private static final int WINDOW_WIDTH = 400;
     private static final int WINDOW_HEIGHT = 300;
     private static final int MIN_WIN_LENGTH = 3;
     private static final int MIN_FIELD_SIZE = 3;
     private static final int MAX_FIELD_SIZE = 10;
-    private static final String FIELD_SIZE_PREFIX = "Field size: ";
-    private static final String WIN_LENGTH_PREFIX = "Win length: ";
+    private static final String FIELD_SIZE_PREFIX = "Размер поля: ";
+    private static final String WIN_LENGTH_PREFIX = "Длина победной строки: ";
 
     private JRadioButton humanVsAi;
     private JRadioButton humanVsHuman;
@@ -26,11 +26,11 @@ public class SettingsWindow extends JFrame {
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setLocationRelativeTo(gameWindow);
         setResizable(false);
-        setTitle("New game settings");
+        setTitle("Установки новой игры");
         setLayout(new GridLayout(10, 1));
         addGameMode();
         addFieldSize();
-        JButton btnStart = new JButton("Start new game");
+        JButton btnStart = new JButton("Старт новой игры");
         btnStart.addActionListener(e -> submitSettings(gameWindow));
         add(btnStart);
     }
@@ -51,18 +51,18 @@ public class SettingsWindow extends JFrame {
         sliderWinLength.addChangeListener(
                 e -> labelWinLength.setText(WIN_LENGTH_PREFIX + sliderWinLength.getValue())
         );
-        add(new JLabel("Choose field size"));
+        add(new JLabel("Выберите размер поля"));
         add(labelFieldSize);
         add(sliderFieldSize);
-        add(new JLabel("Choose win length"));
+        add(new JLabel("Выберите длину победы"));
         add(labelWinLength);
         add(sliderWinLength);
     }
 
     private void addGameMode() {
-        add(new JLabel("Choose game mode:"));
-        humanVsAi = new JRadioButton("Human versus AI", true);
-        humanVsHuman = new JRadioButton("Human versus human");
+        add(new JLabel("Выберите игру:"));
+        humanVsAi = new JRadioButton("Игрок - Комп", true);
+        humanVsHuman = new JRadioButton("Игрок1 - Игрок2");
         ButtonGroup gameMode = new ButtonGroup();
         gameMode.add(humanVsAi);
         gameMode.add(humanVsHuman);

@@ -118,11 +118,11 @@ public class TicTacToeGameApp extends JPanel {
                     continue;
                 }
                 if (field[y][x] == DOT_HUMAN) {
-                    g.setColor(Color.GREEN);
+                    //g.setColor(Color.GREEN);
                     g.drawLine(x * cellWidth, y * cellHeight, x * cellWidth + cellWidth, y * cellHeight + cellHeight);
                     g.drawLine(x * cellWidth + cellWidth, y * cellHeight, x * cellWidth , y * cellHeight + cellHeight);
                 } else {
-                    g.setColor(Color.RED);
+                    //g.setColor(Color.RED);
                     g.drawOval(x * cellWidth + DOT_PADDING,
                             y * cellHeight + DOT_PADDING,
                             cellWidth - DOT_PADDING * 2,
@@ -153,19 +153,19 @@ public class TicTacToeGameApp extends JPanel {
         g.setColor(Color.ORANGE);
         g.setFont(new Font("Arial", Font.BOLD, 60));
         if(stateGameOver == STATE_WIN_HUMAN && gameMode == 0){
-            g.drawString("HUMAN WIN", getWidth() / 4, getHeight() / 2);
+            g.drawString("Игрок победил!", getWidth() / 8, getHeight() / 2);
         }
         else if(stateGameOver == STATE_WIN_HUMAN && playerNumTurn == 1){
-            g.drawString("HUMAN 2 WIN!", getWidth() / 4, getHeight() / 2);
+            g.drawString("Игрок2 победил!", getWidth() / 8, getHeight() / 2);
         }
         else if(stateGameOver == STATE_WIN_HUMAN && playerNumTurn == 2){
-            g.drawString("HUMAN 1 WIN!", getWidth() / 4, getHeight() / 2);
+            g.drawString("Игрок1 победил!", getWidth() / 8, getHeight() / 2);
         }
         else if(stateGameOver == STATE_DRAW){
-            g.drawString("DRAW", getWidth() / 4, getHeight() / 2);
+            g.drawString("НИЧЬЯ", getWidth() / 6, getHeight() / 2);
         }
         else {
-            g.drawString("AI WIN", getWidth() / 4, getHeight() / 2);
+            g.drawString("Комп победил!", getWidth() / 8, getHeight() / 2);
         }
     }
 
